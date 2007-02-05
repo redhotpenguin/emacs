@@ -44,6 +44,12 @@
 
 ; auto completion
 ;;;;;;;;;;;;;;;;;
+(setq perl-wordlist-default-file "~/.vim/wordlists/perl.list")
+(setq auto-load-wordlist 't)
+(if auto-load-wordlist
+      (find-file-noselect perl-wordlist-default-file 'NOWARN)    
+)
+
 (require 'dabbrev)
 (setq dabbrev-always-check-other-buffers t)
 (setq dabbrev-abbrev-char-regexp "\\sw\\|\\s_")
@@ -75,5 +81,8 @@ one step, else indent 'correctly'"
 (add-hook 'text-mode-hook
           '(lambda () 
              (local-set-key "\C-i"     'my-tab)))
+(add-hook 'cperl-mode-hook
+          '(lambda ()
+            (local-set-key "\C-i"     'my-tab)))
 
 ; add more hooks here
