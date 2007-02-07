@@ -36,6 +36,21 @@
       (substitute-in-file-name "$HOME/perldev"))
   (perlnow-define-standard-keymappings)
 
+ (global-set-key "\C-xt" 'perltidy-region)
+ (defun perltidy-region ()
+   "Run the perltidy parser on the current region."
+   (interactive)    
+   (let ((start (mark))
+         (end (point))
+         (shell-command-default-error-buffer "perltidy-errors")
+         (command "perltidy"))
+         (shell-command-on-region 
+             start 
+             end 
+             command 
+             t t 
+             shell-command-default-error-buffer))) 
+
 (global-set-key [f4] 'perlnow-script)
 
 (add-hook'cperl-mode-hook
@@ -69,6 +84,9 @@ one step, else indent 'correctly'"
         (t (indent-according-to-mode)))
   (setq this-command 'my-tab))
 
+(add-hook 'cperl-mode-hook
+          '(lambda ()
+             (local-set-key "\C-i"     'my-tab)))
 (add-hook 'html-mode-hook
           '(lambda () 
              (local-set-key "\C-i"     'my-tab)))
