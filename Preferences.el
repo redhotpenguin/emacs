@@ -14,6 +14,15 @@
 (setq-default tab-width 4)
 (setq visible-bell t)
 (setq-default indent-tabs-mode nil)
+
+
+
+(require 'tt-mode)
+(setq load-path
+      (cons "/Users/phred/emacs" load-path))
+ (autoload 'tt-mode "tt-mode")
+ (setq auto-mode-alist
+  (append '(("\\.tmpl$" . tt-mode))  auto-mode-alist ))
  
 (defun perltidy ()
   "Run perltidy on the current region or buffer."
