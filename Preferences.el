@@ -17,9 +17,8 @@
 
 
 
-(require 'tt-mode)
 (setq load-path
-      (cons "/Users/phred/emacs" load-path))
+      (cons (expand-file-name "~/.emacs.d/lisp") load-path))
  (autoload 'tt-mode "tt-mode")
  (setq auto-mode-alist
   (append '(("\\.tmpl$" . tt-mode))  auto-mode-alist ))
